@@ -35,6 +35,33 @@ function getZodiacSign(date: Date) {
   return { name: "Unknown", symbol: "？", dateRange: "N/A" };
 }
 
+export const calculateSimpleAge = (birthDate: Date): number => {
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
+export const getNextBirthdayCountdownInDays = (birthDate: Date): number => {
+    const now = new Date();
+    // Use UTC to avoid timezone issues with date comparisons
+    const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+    
+    const birthDateUTC = new Date(Date.UTC(0, birthDate.getUTCMonth(), birthDate.getUTCDate()));
+    let nextBirthday = new Date(Date.UTC(today.getUTCFullYear(), birthDateUTC.getUTCMonth(), birthDateUTC.getUTCDate()));
+    
+    if (nextBirthday < today) {
+        nextBirthday.setUTCFullYear(today.getUTCFullYear() + 1);
+    }
+
+    const diff = nextBirthday.getTime() - today.getTime();
+    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    return days;
+}
+
 
 export const calculateBirthdayInfo = (birthDate: Date): BirthdayInfo => {
   const now = new Date();

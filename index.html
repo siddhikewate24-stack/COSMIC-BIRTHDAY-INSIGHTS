@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cosmic Birthday Insights</title>
+    <title>Nakshatra Path</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,9 +12,105 @@
     <style>
       body {
         font-family: 'Inter', sans-serif;
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
       .font-orbitron {
         font-family: 'Orbitron', sans-serif;
+      }
+      /* Starry background for the 'starry' theme */
+      .starry-background {
+        background: #000;
+        overflow: hidden;
+      }
+      .starry-background .stars,
+      .starry-background .twinkling,
+      .starry-background .clouds {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .stars {
+        background: #000 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlMAgJsr3QAAAAJJREFUOMtjYBgFo4B8AAADAAD//wF4Ab1fDBBFAAAAAElFTkSuQmCC) repeat top center;
+        z-index: 0;
+      }
+      .twinkling {
+        background: transparent url(https://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+        z-index: 1;
+        animation: move-twink-back 200s linear infinite;
+      }
+      @keyframes move-twink-back {
+        from { background-position: 0 0; }
+        to { background-position: -10000px 5000px; }
+      }
+
+      /* Glitter background for the 'glitter' theme */
+      .glitter-background {
+          background-color: #1a0c2e; /* Deeper purple */
+          overflow: hidden;
+          position: relative;
+      }
+      .glitter-background .glitter-layer {
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background-repeat: repeat;
+          z-index: 0;
+      }
+      .glitter-layer.l1 {
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><circle fill="%23fff" cx="25" cy="25" r="0.7"/></svg>');
+          background-size: 50px 50px;
+          opacity: 0.8;
+          animation: glitter-fall 20s linear infinite;
+      }
+      .glitter-layer.l2 {
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75 75"><circle fill="%23f0f" cx="50" cy="50" r="1"/></svg>');
+          background-size: 75px 75px;
+          opacity: 0.6;
+          animation: glitter-fall 30s linear infinite;
+          animation-delay: -5s;
+      }
+      .glitter-layer.l3 {
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle fill="%230ff" cx="75" cy="25" r="1.2"/></svg>');
+          background-size: 100px 100px;
+          opacity: 0.5;
+          animation: glitter-fall 40s linear infinite;
+          animation-delay: -10s;
+      }
+      .glitter-layer.l4 {
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><circle fill="%23ff0" cx="40" cy="90" r="0.8"/></svg>');
+          background-size: 120px 120px;
+          opacity: 0.7;
+          animation: glitter-fall 50s linear infinite;
+          animation-delay: -15s;
+      }
+      @keyframes glitter-fall {
+          0% { transform: translate(0, 0) rotate(0deg); }
+          100% { transform: translate(250px, 500px) rotate(360deg); }
+      }
+
+     /* Animation for splash screen */
+     @keyframes pulse-slow {
+        50% {
+          opacity: .85;
+          transform: scale(0.97);
+        }
+      }
+      .animate-pulse-slow {
+        animation: pulse-slow 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      @keyframes fade-out {
+        0%, 80% { opacity: 1; }
+        100% { opacity: 0; visibility: hidden; }
+      }
+      .animate-fade-out {
+        animation: fade-out 2.5s ease-in-out forwards;
       }
     </style>
   <script type="importmap">
@@ -29,7 +124,7 @@
 }
 </script>
 </head>
-  <body class="bg-slate-900">
+  <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

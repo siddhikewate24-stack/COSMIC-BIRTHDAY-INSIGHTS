@@ -1,5 +1,5 @@
 {
-  "name": "Cosmic Birthday Insights",
-  "description": "An application that calculates your age and provides fun, personalized insights about your birthdate using AI. Discover your zodiac sign, next birthday countdown, historical facts, lucky numbers, and more.",
+  "name": "Nakshatra Path",
+  "description": "Nakshatra Path calculates your age and provides fun, personalized insights about your birthdate using AI. Discover your zodiac sign, next birthday countdown, historical facts, lucky numbers, and more.",
   "requestFramePermissions": []
 }
